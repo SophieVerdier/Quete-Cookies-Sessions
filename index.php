@@ -1,5 +1,33 @@
+<?php
+    //On démarre une nouvelle session
+    session_start();
+    if(!isset($_SESSION["cart"])){
+        $_SESSION["cart"] = array();
+    }
+
+    
+?>
+
 <?php require 'inc/data/products.php'; ?>
 <?php require 'inc/head.php'; ?>
+
+<?php if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['add_to_cart'])){
+        $addedCookie = $_GET['add_to_cart'];
+        if(isset($catalog[$addedCookie])){
+            if (!isset($_SESSION['cart'][$addedCookie])){
+                $_SESSION['cart'][$addedCookie] = 1;
+            }else{
+                $_SESSION['cart'][$addedCookie]++;
+            }
+            
+        }
+    }
+}
+
+
+?>
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>

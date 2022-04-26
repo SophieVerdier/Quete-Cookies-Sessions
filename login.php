@@ -1,4 +1,26 @@
-<?php require 'inc/head.php'; ?>
+<?php
+    //On démarre une nouvelle session
+    session_start();  
+   
+?>
+
+<?php require 'inc/head.php'; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$loginname = $_POST['loginname'];
+if(!empty($loginname)){
+    $_SESSION['login'] = $loginname;
+   
+    header('Location: index.php');
+}else{
+    header('location: login.php');
+}
+
+}
+?>
+
+
+
 <div class="container" style="margin-top:40px">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -6,6 +28,7 @@
                 <div class="panel-heading">
                     <strong> Sign in to continue</strong>
                 </div>
+               
                 <div class="panel-body">
                     <form role="form" action="#" method="POST">
                         <fieldset>

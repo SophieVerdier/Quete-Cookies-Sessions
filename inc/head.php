@@ -13,6 +13,9 @@
 </head>
 <body>
 <header>
+
+
+
     <!-- MENU ENTETE -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -48,6 +51,16 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+   
+        <strong> <?php
+           if(isset($_SESSION['login'] )): ?>
+           Hello, <?= $_SESSION['login']?> !
+           <a href="/logout.php">Logout</a>
+        <?php else: ?>
+            <a href="/login.php">Login</a>
+        <?php endif; ?>
+        
+
+        </strong>
     </div>
 </header>
